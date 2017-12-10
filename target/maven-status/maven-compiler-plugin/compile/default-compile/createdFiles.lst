@@ -1,0 +1,4 @@
+com\sun\cms\model\BaseDto.class
+com\sun\cms\model\PageDto.class
+com\sun\cms\dao\BaseDao.class
+com\sun\cms\service\BaseService.class
