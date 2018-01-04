@@ -3,6 +3,7 @@ package com.sun.cms.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -52,6 +53,21 @@ public class BaseService<Dao extends BaseDao<Dto>,Dto extends BaseDto> {
 		}
 	}
 	/**
+	 * 查询-当具有唯一结果时
+	 * @param dto
+	 * @return
+	 */
+	public Dto getOne(Dto dto){
+		try {
+			Dto result = dao.selectOne(dto);
+			return result;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	/**
 	 * 插入多条数据
 	 * @param dtos
 	 * @return
@@ -90,6 +106,26 @@ public class BaseService<Dao extends BaseDao<Dto>,Dto extends BaseDto> {
 	public boolean delete(Dto dto){
 		try {
 			dao.delete(dto);
+			return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	}
+	/**
+	 * 批量删除
+	 * @author dongqun
+	 * 2017年12月26日下午1:41:15
+	 * @param dtos
+	 * @return
+	 */
+	@Transactional
+	public boolean delete(List<Dto> dtos){
+		try {
+			for (Dto dto : dtos) {
+				dao.delete(dto);
+			}			
 			return true;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
