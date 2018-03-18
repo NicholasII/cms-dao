@@ -153,10 +153,9 @@
 		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
-
 		</dependency>
 		<!-- 分页插件 -->
-		<dependency>
+		<dependency> 
 			<groupId>com.github.pagehelper</groupId>
 			<artifactId>pagehelper</artifactId>
 		</dependency>
